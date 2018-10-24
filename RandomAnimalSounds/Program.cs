@@ -21,21 +21,24 @@ namespace RandomAnimalSounds
 
             dynamic data = JsonConvert.DeserializeObject(requestBody);
 
+            AudioSsml animalSound = null;
+
             switch (data.request.type.ToString())
             {
                 case "IntentRequest":
-                case "LaunchRequest":
-                    var animalSound = AnimalsSoundsSsmlRandomizer.Next();
-                    return animalSound
+                    if(data.request.intent.name == "Play")
+                    {
+                        var animalName = data.request.intent.slots.animalname.value;
+                        animalSound = AnimalsSoundsSsmlRandomizer.Next(animalName?.ToString());
+                    }
+                    break;
+            }
+
+            return (animalSound ?? AnimalsSoundsSsmlRandomizer.Next())
                             .Then(BreakSsml.OneSecond)
                             .Then(animalSound)
                             .ToSpeechResponse()
                             .OkCamelCaseJsonResult();
-                default:
-                    return "Welcome to Random Animal sounds. Try asking 'Play random animal sound'"
-                            .ToSpeechResponse()
-                            .OkCamelCaseJsonResult();
-            }
         }
     }
 }

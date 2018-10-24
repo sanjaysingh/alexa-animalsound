@@ -1,0 +1,52 @@
+﻿{
+	"version": "1.0",
+	"session": {
+		"new": false,
+		"sessionId": "amzn1.echo-api.session.c68c6467-40eb-4f8f-a991-s",
+		"application": {
+			"applicationId": "amzn1.ask.skill.c8ec-42aa-a09a-5b1152b7799b"
+		},
+		"user": {
+			"userId": "amzn1.ask.account.sdas"
+		}
+	},
+	"context": {
+		"AudioPlayer": {
+			"playerActivity": "IDLE"
+		},
+		"System": {
+			"application": {
+				"applicationId": "amzn1.ask.skill.0f817801-c8ec-42aa-a09a-5b1152b7799b"
+			},
+			"user": {
+				"userId": "amzn1.ask.account.dscsd"
+			},
+      "device": {
+        "deviceId": "amzn1.ask.device.dsad",
+        "supportedInterfaces": {
+          "AudioPlayer": {}
+        }
+      },
+			"apiEndpoint": "https://api.amazonalexa.com",
+			"apiAccessToken": "dsad.dasd.HIwepYMGaIvVnCIlAGblL9XzQOMDIVyy2NLtmap55fhprm52OmVrdR1Al7F7oCRA50zUWQE4cv1mr9SsdXeE84wwdqXRwysYWMi1uW9FIeQFjuqBBcT0SpvQvtn3ZKuWDGXc2ZQrax5zWyEfCzELsDBC2skrEhKe2T8Y4kxNFBDJun9Hr3bTUQxm4cOYzzWnD338NnYyUiBm-u-phw0fpWlG6GuIt2_Vd_Q-BfGcWJYVOcLFzwCf60gP1Vl1wbH4KFHnMfdc2d8y6JrDbSuPobVistcHqMKzFslp5bp1J9WrrzgMxrmI6nxE1EHtpLVVw1j8u9AY7PrEDvstP32P4w"
+		}
+	},
+	"request": {
+		"type": "IntentRequest",
+		"requestId": "amzn1.echo-api.request.8317d9d4-be61-4def-8ad8-b6582ae1d756",
+		"timestamp": "2018-10-24T02:26:03Z",
+		"locale": "en-US",
+		"intent": {
+			"name": "Play",
+			"confirmationStatus": "NONE",
+			"slots": {
+				"animalname": {
+					"name": "animalname",
+					"value": "cat",
+					"confirmationStatus": "NONE",
+					"source": "USER"
+				}
+			}
+		}
+	}
+}

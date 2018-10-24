@@ -1,8 +1,11 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RandomAnimalSounds;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
@@ -27,6 +30,24 @@ namespace RandomAnimalSoundsTests
             }
 
             Assert.True(sounds.Count > 1, "Randomization is not working as expected.");
+        }
+
+        [Fact]
+        public void IntentRequest_CatFiveTimes_ShouldPlayRandomCatSounds()
+        {
+            string intentRequestJson = ReadEmbeddedResource("RandomAnimalSoundsTests.CatSoundIntentRequest.json");
+
+            HashSet<string> sounds = new HashSet<string>();
+            for (int i = 0; i < 5; i++)
+            {
+                var response = Program.Run(CreateRequest(intentRequestJson), new TraceWriterStub());
+                var ssmlResponse = (response as JsonResult).Value as SsmlSpeechResponse;
+                var ssmlSource = XElement.Parse(ssmlResponse.Ssml).Element("audio").Attribute("src").Value.ToString();
+                sounds.Add(ssmlSource);
+            }
+
+            Assert.True(sounds.All(x => x.ToLower().Contains("cat")), "Some other animal sound is played when cat was requested.");
+            Assert.True(sounds.Count > 1, "Same cat sound is being played on each request.");
         }
 
         private static HttpRequest CreateRequest(string json)
