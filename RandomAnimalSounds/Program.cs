@@ -34,7 +34,8 @@ namespace RandomAnimalSounds
                     break;
             }
 
-            return (animalSound ?? AnimalsSoundsSsmlRandomizer.Next())
+            animalSound = animalSound ?? AnimalsSoundsSsmlRandomizer.Next();
+            return animalSound 
                             .Then(BreakSsml.OneSecond)
                             .Then(animalSound)
                             .ToSpeechResponse()
