@@ -11,7 +11,7 @@ namespace RandomAnimalSounds
 {
     public static class Program
     {
-        [FunctionName("RandomAnimalSound")]
+        [FunctionName("animalsound")]
         public static IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)]HttpRequest req, TraceWriter log)
         {
             log.Info("Entered Run function");
