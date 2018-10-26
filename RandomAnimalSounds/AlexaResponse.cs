@@ -4,10 +4,11 @@
     {
         public AlexaResponse(SpeechResponse speechResponse)
         {
-            this.Response = new { outputSpeech = speechResponse };
+            this.Response = new OutputSpeechContainer(speechResponse);
         }
 
-        public object Response { get; }
+        public OutputSpeechContainer Response { get; }
+
         public string Version => "1.0";
     }
 }

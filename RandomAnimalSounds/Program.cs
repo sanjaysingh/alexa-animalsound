@@ -39,6 +39,7 @@ namespace RandomAnimalSounds
                             .Then(BreakSsml.OneSecond)
                             .Then(animalSound)
                             .ToSpeechResponse()
+                            .ToAlexaResponse()
                             .OkCamelCaseJsonResult();
         }
     }

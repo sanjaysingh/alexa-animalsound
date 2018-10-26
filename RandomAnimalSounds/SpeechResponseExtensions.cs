@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using System.Net;
-
-namespace RandomAnimalSounds
+﻿namespace RandomAnimalSounds
 {
     /// <summary>
     /// Extensions to sppech response. The reason they are seperate from directly into speech response is because of seperation of concern. Speech response itself has
@@ -11,14 +6,9 @@ namespace RandomAnimalSounds
     /// </summary>
     public static class SpeechResponseExtensions
     {
-        private static readonly JsonSerializerSettings CamelCaseSerializerSettings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
-
-        public static JsonResult OkCamelCaseJsonResult(this SpeechResponse speechResponse)
+        public static AlexaResponse ToAlexaResponse(this SpeechResponse speechResponse)
         {
-            return new JsonResult(speechResponse, CamelCaseSerializerSettings)
-            {
-                StatusCode = (int)HttpStatusCode.OK
-            };
+            return new AlexaResponse(speechResponse);
         }
     }
 }

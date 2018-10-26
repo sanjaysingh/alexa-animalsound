@@ -24,7 +24,7 @@ namespace RandomAnimalSoundsTests
             for (int i = 0; i < 5; i++)
             {
                 var response = Program.Run(CreateRequest(launchRequestJson), new TraceWriterStub());
-                var ssmlResponse = (response as JsonResult).Value as SsmlSpeechResponse;
+                var ssmlResponse = ((response as JsonResult).Value as AlexaResponse).Response.OutputSpeech as SsmlSpeechResponse;
                 var ssmlSource = XElement.Parse(ssmlResponse.Ssml).Element("audio").Attribute("src").Value.ToString();
                 sounds.Add(ssmlSource);
             }
@@ -41,7 +41,8 @@ namespace RandomAnimalSoundsTests
             for (int i = 0; i < 5; i++)
             {
                 var response = Program.Run(CreateRequest(intentRequestJson), new TraceWriterStub());
-                var ssmlResponse = (response as JsonResult).Value as SsmlSpeechResponse;
+                dynamic dynamicResponse = ((response as JsonResult).Value as AlexaResponse).Response;
+                var ssmlResponse = ((response as JsonResult).Value as AlexaResponse).Response.OutputSpeech as SsmlSpeechResponse;
                 var ssmlSource = XElement.Parse(ssmlResponse.Ssml).Element("audio").Attribute("src").Value.ToString();
                 sounds.Add(ssmlSource);
             }
