@@ -22,9 +22,13 @@ namespace RandomAnimalSounds
             dynamic data = JsonConvert.DeserializeObject(requestBody);
 
             AudioSsml animalSound = null;
+            bool shouldEndSession = true;
 
             switch (data.request.type.ToString())
             {
+                case "LaunchRequest":
+                    shouldEndSession = false;
+                    break;
                 case "IntentRequest":
                     if(data.request.intent.name == "Play")
                     {
@@ -39,7 +43,7 @@ namespace RandomAnimalSounds
                             .Then(BreakSsml.OneSecond)
                             .Then(animalSound)
                             .ToSpeechResponse()
-                            .ToAlexaResponse()
+                            .ToAlexaResponse(shouldEndSession)
                             .OkCamelCaseJsonResult();
         }
     }
