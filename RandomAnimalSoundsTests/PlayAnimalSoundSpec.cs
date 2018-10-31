@@ -15,6 +15,11 @@ namespace RandomAnimalSoundsTests
 {
     public class PlayAnimalSoundSpec
     {
+        public PlayAnimalSoundSpec()
+        {
+            Program.AuthDisabled = true;
+        }
+
         [Fact]
         public void LaunchRequest_FiveTimes_ShouldPlayRandomAnimalSounds()
         {
